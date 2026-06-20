@@ -18,7 +18,7 @@ bot.onText(/\/start/, (msg) => {
         [
           {
             text: '🎮 Открыть мини-приложение',
-            web_app: { url: 'http://localhost:3000' }
+            web_app: { url: 'https://telegram-mini-bot-umvv.onrender.com' }
           }
         ]
       ]
