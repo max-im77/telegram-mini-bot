@@ -9,6 +9,11 @@ const app = express();
 app.use(express.json());
 app.use(express.static('public'));
 
+// Маршрут для главной страницы
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
 bot.onText(/\/start/, (msg) => {
   const chatId = msg.chat.id;
   
