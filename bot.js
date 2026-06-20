@@ -1,5 +1,6 @@
 const TelegramBot = require('node-telegram-bot-api');
 const express = require('express');
+const fs = require('fs');
 const path = require('path');
 
 const token = '8740657800:AAE_LzVtkZKrbWS6xRcI1FJ81UzLQVKVhrs';
@@ -8,11 +9,12 @@ const bot = new TelegramBot(token, { polling: true });
 const app = express();
 app.use(express.json());
 
-const publicPath = path.join(__dirname, 'public');
-app.use(express.static(publicPath));
+const indexPath = path.join(__dirname, 'public', 'index.html');
+const indexHtml = fs.readFileSync(indexPath, 'utf8');
 
 app.get('/', (req, res) => {
-  res.sendFile(path.join(publicPath, 'index.html'));
+  res.setHeader('Content-Type', 'text/html; charset=utf-8');
+  res.send(indexHtml);
 });
 
 bot.onText(/\/start/, (msg) => {
